@@ -1,0 +1,9 @@
+Notes for uploading to AWS S3:
+-----------------------------
+- Build for WebGL
+- Rename the *gz files in Release folder to *.gz (e.g. xxx.jsgz -> xxx.js.gz)
+- Update the url props of Module var in index.html to correspond to *.gz (e.g. dataUrl: "Release/xxx.data.gz")
+- Update other index.html content as needed
+- aws --profile ${profile} s3 sync . s3://${bucket} --exclude "*.gz" --delete --dryrun
+- aws --profile ${profile} s3 sync . s3://${bucket} --exclude "*" --include "*.gz" --content-encoding "gzip" --delete --dryrun
+
